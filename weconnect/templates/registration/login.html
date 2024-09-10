@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+<div class="columns is-centered">
+  <div class="column is-one-third m-5">
+    <h2 class="title is-3" style="font-family: times-new-romans;">Login</h2>
+    <form method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button class="button mt-5" style="background-color: #ff6700; color: #ffffff; font-family: times-new-romans;" type="submit" value="Login">
+                    Login
+            </button>
+    </form>
+    <a href="{% url 'weconnect:register' %}">
+        <button class="button is-info mt-5" style="color: #ffffff; font-family: times-new-romans;">
+                Create Profile
+        </button>
+    </a>
+
+    <a href="{% url 'weconnect:password_reset' %}">
+        <button class="button is-fullwidth is-medium mt-5" style="background-color: #ff6700; color: #ffffff; font-family: times-new-romans;">
+                Reset password
+        </button>
+    </a>
+
+  </div>
+  <div class="column m-5">
+    <p class="bd-notification is-primary">Second column with more content. This is so you can see the vertical alignment.</p>
+  </div>
+</div>
+
+
+
+{% endblock %}

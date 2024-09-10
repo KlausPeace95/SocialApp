@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="column">
+
+    <div class="block">
+        <h1 class="title is-1">
+            {{profile.user.username|upper}}'s Posts
+        </h1>
+
+    </div>
+    
+    <form method="post">
+
+    {% csrf_token %}
+
+    <div class="buttons has-addons">
+
+    {% if profile in user.profile.follows.all %}
+
+        <button class="button is-info is-static">Follow</button>
+
+        <button class="button is-danger" name="follow" value="unfollow">
+
+            Unfollow
+
+        </button>
+
+    {% else %}
+
+        <button class="button is-info" name="follow" value="follow">
+
+            Follow
+
+        </button>
+
+        <button class="button is-danger is-static">Unfollow</button>
+
+    {% endif %}
+
+    </div>
+
+    </form>
+
+    <div class="content">
+
+    {% for posts in profile.user.posts.all %}
+        <div class="box">
+            {{ posts.body }}
+            <br />
+            <span class="is-small has-text-grey-light">
+                ({{ posts.created_at }})
+            </span>
+        </div>
+    {% endfor %}
+    </div>
+
+
+</div>
+
+<div class="column is-one-third">
+
+    <div class="block" style="background-color: #ff6700;">
+        <a href="{% url 'weconnect:profile_list' %}">
+            <button style="color: #ffffff;" class="button is-info is-outlined is-fullwidth">
+                All Profiles
+            </button>
+        </a>
+    </div>
+
+    <div class="block">
+        <h3 class="title is-4">
+           Following
+        </h3>
+        <div class="content" style="color: #ff6700;">
+            <ol>
+            {% for following in profile.follows.all %}
+                <li>
+                    <a href="{% url 'weconnect:profile' following.id %}">
+                        {{ following }}
+                    </a>
+                </li>
+            {% endfor %}
+            </ol>
+        </div>
+    </div>
+
+    <div class="block">
+        <h3 class="title is-4">
+            Followers
+        </h3>
+        <div class="content" style="color: #ff6700;">
+            <ol>
+            {% for follower in profile.followed_by.all %}
+                <li>
+                    <a href="{% url 'weconnect:profile' follower.id %}">
+                        {{ follower }}
+                    </a>
+                </li>
+            {% endfor %}
+            </ol>
+        </div>
+    </div>
+
+
+
+</div>
+
+{% endblock content %}

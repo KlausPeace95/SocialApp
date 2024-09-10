@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Klaus Peace">
+    <meta name="date-created" content="17-05-2022">
+    <!--- Include Bulma CSS from CDN --->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+
+    <title>WeConnect</title>
+</head>
+<body>
+
+<nav class="navbar"
+       role="navigation"
+       aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" style="background-color: #ff6700;"
+         href="#">
+        <h1 class="has-text-white">emploCHAT</h1>
+      </a>
+
+      <a role="button"
+         class="navbar-burger"
+         aria-label="menu"
+         aria-expanded="false"
+         data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <div id="navbarBasicExample"
+         class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item"> Home </a>
+        <a class="navbar-item"> Blogs </a>
+
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link"> More </a>
+
+          <div class="navbar-dropdown">
+            <a class="navbar-item"> About us </a>
+            <a class="navbar-item"> Tutorials </a>
+            <a class="navbar-item"> Practice </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="buttons">
+            <a class="button is-success" href="{% url 'weconnect:register' %}">
+              <strong>Sign up</strong>
+            </a>
+            <a class="button is-light" href="{% url 'weconnect:login' %}"> Log in </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+<section class="hero is-primary" style="background-color: #BE5504;">
+    <div class="media">
+      <div class="media-left">
+        <figure class="image is-200x200">
+          <img src="#"
+               alt="">
+        </figure>
+      </div>
+    </div>
+  <div class="hero-body">
+    <a href="{% url 'weconnect:dashboard' %}">
+        <h2 class="title" style="color: #ffffff;">
+          emploCHAT
+        </h2>
+    </a>
+    <p class="subtitle" style="text-align: justify;">
+      Connect <strong>SWIFTLY</strong> <br /> with your Buddies Today!
+    </p>
+  </div>
+</section>
+
+    <div class="container">
+        <div class="columns">
+
+            {% block content %}
+
+            {% endblock content %}
+
+        </div>
+    </div>
+
+ <footer class="footer has-background-dark has-text-white">
+  <!-- Three columns created using columns class of Bulma -->
+  <div class="columns">
+
+    <div class="column">
+
+
+      <h4 class="bd-footer-title
+                 has-text-weight-medium
+                 has-text-left">
+         <marquee><em style="color: #ff6700;">emploCHAT</em></marquee>
+      </h4>
+
+
+      <p class="bd-footer-link
+                has-text-left">
+        <em style="color: #ff6700;">emploCHAT</em>- is an efficient social platform that
+          enables swift chat connection with loved
+          ones and friends around the world with
+          amazing capabilities and creative features.
+      </p>
+
+    </div>
+
+    <div class="column">
+      <h4 class="bd-footer-title
+                 has-text-weight-medium
+                 has-text-justify">
+        Explore
+      </h4>
+
+
+      <p class="bd-footer-link">
+         <a href="https://">
+          <span class="icon-text">
+            <span>Practice</span>
+          </span>
+         </a>
+          <br />
+          <a href="https://">
+              <span class="icon-text">
+                <span>Blogs</span>
+              </span>
+            </a>
+          <br />
+          <a href="https://">
+              <span class="icon-text">
+                <span>Careers</span>
+              </span>
+          </a>
+      </p>
+
+    </div>
+
+
+    <div class="column">
+      <h4 class="bd-footer-title
+                 has-text-weight-medium
+                 has-text-justify">
+        Contact us
+      </h4>
+
+      <p class="bd-footer-link">
+          <a href="https://">
+              <span class="icon-text">
+                <span>Email</span>
+              </span>
+            </a>
+          <br />
+          <a href="https://">
+              <span class="icon-text">
+                <span>Call Us</span>
+              </span>
+            </a>
+          <br />
+          <a href="https://">
+              <span class="icon-text">
+                <span>Chat with us!</span>
+              </span>
+            </a>
+      </p>
+
+    </div>
+  </div>
+</footer>
+
+
+  <div class="content has-text-centered">
+    <p>
+       &copy; Copyright
+      <a href="https://alzironsystems.com">Alziron Systems</a>. All Rights Reserved
+    </p>
+  </div>
+
+</body>
+</html>

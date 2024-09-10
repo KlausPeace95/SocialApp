@@ -1,0 +1,107 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="column">
+
+    <div class="block">
+        <h1 class="title is-1">
+            {{user.username|upper}}
+        </h1>
+    </div>
+
+    {% for posts in posts %}
+        <div class="box">
+            {{posts.body}}
+            <br />
+            <span class="is-small has-text" style="color: #BE5504; opacity: 0.8;">
+                ({{ posts.created_at }} by {{ posts.user.username }})
+            </span>
+        </div>
+    {% endfor %}
+</div>
+
+<div class="column is-one-third m-3">
+
+    <div class="block" style="background-color: #ff6700; border-radius: 50px;">
+        <a href="{% url 'weconnect:profile_list' %} ">
+            <button style="color: #ffffff; font-weight: bold; font-family: times-new-romans; border-radius: 50px" class="button is-info is-outlined is-fullwidth">
+                All Profiles
+            </button>
+        </a>
+    </div>
+    <div class="block" style="background-color: #ff6700; border-radius: 50px;">
+        <a href="{% url 'weconnect:profile' request.user.profile.id %} ">
+            <button style="color: #ffffff; font-weight: bold; font-family: times-new-romans; border-radius: 50px;" class="button is-info is-outlined is-fullwidth">
+                My Profile
+            </button>
+        </a>
+    </div>
+
+
+    <div class="block">
+        <div class="block">
+            <h2 class="title is-3 is-centered" style="font-family: times-new-romans;">What's on Your Mind?</h2>
+        </div>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="button is-medium mt-5" style="background-color: #ff6700; color: #ffffff; font-family: times-new-romans;" type="submit">
+                Submit Post
+            </button>
+        </form>
+    </div>
+
+    <div class="block">
+        <h3 class="title is-4">
+           Following
+        </h3>
+        <div class="content" style="color: #ff6700;">
+            <ol>
+            {% for following in user.profile.follows.all %}
+                <li>
+                    <a href="{% url 'weconnect:profile' following.id %}">
+                        {{ following }}
+                    </a>
+                </li>
+            {% endfor %}
+            </ol>
+        </div>
+    </div>
+
+    <div class="block">
+        <h3 class="title is-4">
+            Followers
+        </h3>
+        <div class="content" style="color: #ff6700;">
+            <ol>
+            {% for follower in user.profile.followed_by.all %}
+                <li>
+                    <a href="{% url 'weconnect:profile' follower.id %}">
+                        {{ follower }}
+                    </a>
+                </li>
+            {% endfor %}
+            </ol>
+        </div>
+    </div>
+
+    <div>
+        <a href="{% url 'weconnect:login' %}">
+            <button class="button is-danger is-medium m-5" style="color: #ffffff; font-family: times-new-romans;" type="submit" value="Logout">
+                    Logout
+            </button>
+        </a>
+        <a href="{% url 'weconnect:password_change' %}">
+            <button class="button is-info is-medium m-5" style="color: #ffffff; font-family: times-new-romans;">
+                Change password
+            </button>
+        </a>
+    </div>
+
+
+</div>
+
+{% endblock content %}
